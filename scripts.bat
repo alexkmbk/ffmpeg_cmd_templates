@@ -4,7 +4,7 @@ ffmpeg -i concat:"D:\VIDEO_TS\VTS_01_0.VOB|D:\VIDEO_TS\VTS_01_1.VOB|D:\VIDEO_TS\
 // Конвертация любых видео-файлов с расширением .MOV  в файл в h.264 формате видео и mp3 формате звука, контейнер mp4 
 // обрабатываются все файлы в текущей директории а также во всех вложенных
 // если для файла с расширением .mov уже существует соответствующий файл с расширением mp4, то он пропускается и не обрабатывается 
-// for /R %%G in (*.MOV) do IF NOT EXIST "D:\bin\ffmpeg\bin\%%~nG.mp4" ffmpeg -i "%%G" -loglevel panic -vcodec libx264 -threads 0 -b 2000k -acodec libmp3lame -ab 320k "D:\bin\ffmpeg\bin\%%~nG.mp4"
+for /R %%G in (*.MOV) do IF NOT EXIST "D:\bin\ffmpeg\bin\%%~nG.mp4" ffmpeg -i "%%G" -loglevel panic -vcodec libx264 -threads 0 -b 2000k -acodec libmp3lame -ab 320k "D:\bin\ffmpeg\bin\%%~nG.mp4"
 
 
 // Извлечение из любых файлов с расширением *.m4a аудиодорожек и сохранение в mp3 формате с битрейтом 256k. 
