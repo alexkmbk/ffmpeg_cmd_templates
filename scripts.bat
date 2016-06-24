@@ -11,3 +11,6 @@ for /R %%G in (*.MOV) do IF NOT EXIST "D:\bin\ffmpeg\bin\%%~nG.mp4" ffmpeg -i "%
 // обрабатываются все файлы в текущей директории, а также во всех вложенных
 // если для файла с расширением .mov уже существует соответствующий файл с расширением mp4, то он пропускается и не обрабатывается 
 for /R %%G in (*.m4a) do IF NOT EXIST "D:\bin\ffmpeg\bin\%%~nG.mp3" ffmpeg -i "%%G" -loglevel panic -acodec libmp3lame -ab 256k "D:\bin\ffmpeg\bin\%%~nG.mp3"
+
+// Преобразование аудиофалов в видео с добавлением картинки
+for /R %%G in (*.wav) do IF NOT EXIST "D:\bin\ffmpeg\bin\%%~nG.mkv" ffmpeg -loop 1 -r 2 -i "%%~nG.jpg" -i "%%~nG.wav" -vf scale=-1:380 -c:v libx264 -preset slow -tune stillimage -crf 18 -c:a copy -shortest -pix_fmt yuv420p -threads 0 "%%~nG.mkv"
